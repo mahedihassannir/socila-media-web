@@ -1,7 +1,10 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import app from '../pages/firebase.config';
+
+let { getAuth, CreateUSerWithEmailAndPassword, singInUserWitEmailAndPassword } = 'firebase/auth'
 
 
-
+let auth = getAuth(app)
 
 
 
@@ -11,16 +14,38 @@ export let contexM = createContext(null)
 
 const AuthProvder = ({ children }) => {
 
-    
 
 
+    let handleLogin = (email, password) => {
 
-    
-    let userInfo = {
+        return singInUserWitEmailAndPassword(auth, email, password)
+
+
 
     }
 
-    return <contexM.Provider value={user}>
+    let handleRegisterWith = (email, password) => {
+
+        return CreateUSerWithEmailAndPassword(auth, email, password);
+
+    }
+
+    let [user, Setuser] = useState(null)
+
+    console.log(user);
+
+    
+    // here is setting observer
+
+
+
+
+    let userInfo = {
+        handleLogin,
+        handleRegisterWith,
+    }
+
+    return <contexM.Provider value={userInfo}>
         {children}
     </contexM.Provider>
 
