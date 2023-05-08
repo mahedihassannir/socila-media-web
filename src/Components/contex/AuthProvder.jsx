@@ -1,10 +1,25 @@
 import React, { createContext, useEffect, useState } from 'react';
-import app from '../pages/firebase.config';
-
-let { getAuth, CreateUSerWithEmailAndPassword, singInUserWitEmailAndPassword } = 'firebase/auth'
 
 
-let auth = getAuth(app)
+// let { getAuth, CreateUSerWithEmailAndPassword, singInUserWitEmailAndPassword } = 'firebase/auth'
+
+
+// import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+// import app from './firebase.config';
+
+
+// let auth = getAuth(app)
+
+
+
+
+
+
+
+
+
+
+// let auth = getAuth(app)
 
 
 
@@ -18,7 +33,7 @@ const AuthProvder = ({ children }) => {
 
     let handleLogin = (email, password) => {
 
-        return singInUserWitEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
 
 
 
@@ -26,15 +41,16 @@ const AuthProvder = ({ children }) => {
 
     let handleRegisterWith = (email, password) => {
 
-        return CreateUSerWithEmailAndPassword(auth, email, password);
+
+        return createUserWithEmailAndPassword(auth, email, password)
 
     }
 
     let [user, Setuser] = useState(null)
 
-    console.log(user);
 
-    
+
+
     // here is setting observer
 
 
@@ -43,6 +59,7 @@ const AuthProvder = ({ children }) => {
     let userInfo = {
         handleLogin,
         handleRegisterWith,
+        user
     }
 
     return <contexM.Provider value={userInfo}>
